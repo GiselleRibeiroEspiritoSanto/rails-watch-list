@@ -1,7 +1,34 @@
- <h1> Lists!</h1>
-<ul>
+<header><h2>Movie List:DB</h2></header>
+<div class="banner shadow" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://miro.medium.com/v2/resize:fit:3840/1*chnnCiC2ozMfPpuXNoIjjw.jpeg);">
+  <div class="container">
+    <h1>Movie List:DB brings <strong>a full movie database</strong> to <strong>everyone</strong>!</h1>
+    <p>Change your life and watch Madame Web.</p>
+    <a class="btn btn-primary" href="#">Click Here to Watch a trailer</a>
+  </div>
+</div>
+<div class="container py-5">
+<div class="d-flex align-items-center justify-content-between mb-3">
+<h3 class="mb-0">Choose your list:</h3>
+   <%= link_to new_list_path(@list) do %>
+       <button class="btn btn-primary">Create a new list</button>
+  <% end %>
+</div>
+<div class="row">
 <% @lists.each do |list|%>
-<li><%= link_to "#{list.name}", list, :class => "btn btn = primary" %></li>
-<br>
+<div class="co-12 col-sm-6 col-md-4 mb-3">
+<%= link_to list_path(list.id), data: {turbo_method: :delete, turbo_confirm: "Delete #{list.name}?"} do %>
+            <i class="fa-regular fa-trash-can"></i></li>
+            <% end %>
+<%= link_to list_path(list), class:"text-decoration-none" do %>
+ <% if list.photo.attached? %>
+      <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
+      <%= list.name %>
+    </div>
+    <%else %>
+    <p><%= list.name %></p>
+    <% end %>
 <% end %>
-</ul>
+</div>
+<% end %>
+</div>
+</div>

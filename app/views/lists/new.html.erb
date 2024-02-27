@@ -1,2 +1,19 @@
-<%= <h1> Olá tudo bem?! Eu sou o new!</h1>
- %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-lg-3">
+      <div class="bg-white rounded p-3 shadow">
+        <h3>Create a new list</h3>
+        <%= simple_form_for @list do |f| %>
+          <%= f.input :name, placeholder: 'Drama' %>
+          <%= f.input :photo, as: :file %>
+          <div class="d-flex justify-content-between">
+          <%= f.submit class: 'btn btn-flat' %>
+        <% end %>
+         <%= link_to lists_path do %>
+    <button class="btn btn-flat ml-auto"> Back to list</button>
+  <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
